@@ -1,0 +1,37 @@
+.resto-cafe-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+}
+
+.resto-cafe-header h1 {
+  margin: 0;
+}
+
+.resto-cafe-header :nth-child(2) {
+  display: flex;
+  gap: 16px;
+}
+
+.cart-icon-container {
+  position: relative;
+}
+
+.cart-items-badge {
+  position: absolute;
+  right: -15px;
+  top: -15px;
+  background-color: orange;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-items-badge p {
+  margin: 0px;
+  color: white;
+}

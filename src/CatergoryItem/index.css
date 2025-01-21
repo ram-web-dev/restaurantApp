@@ -1,0 +1,22 @@
+category-item {
+  padding: 10px 20px;
+  cursor: pointer;
+  color: rgb(126, 126, 126);
+  font-family: Roboto;
+  flex-shrink: 0;
+}
+
+.active {
+  color: orangered;
+  border-bottom: 2px solid orangered;
+}
+
+.category-name {
+  margin: 0;
+  padding: 16px 0;
+  cursor: pointer;
+  font-weight: 500;
+  width: max-content;
+  border: none;
+  background-color: transparent;
+}

@@ -1,0 +1,21 @@
+.restaurant-menu-container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.category-list {
+  display: flex;
+  gap: 48px;
+  list-style: none;
+  padding: 0 16px;
+  margin: 0;
+  border-top: 2px solid rgb(229, 231, 235);
+  border-bottom: 2px solid rgb(229, 231, 235);
+  overflow: auto;
+}
+
+.items-list {
+  padding: 0 16px;
+  list-style-type: none;
+}

@@ -1,0 +1,89 @@
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #b8b8b8;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 2px 2px #eaeaea;
+}
+.menu-item-label {
+  height: 35px;
+  width: 40px;
+}
+
+.menu-item-details {
+  display: flex;
+  gap: 16px;
+}
+
+.menu-item-name {
+  margin-top: 0;
+}
+
+.menu-item-price {
+  font-weight: 600;
+  color: #5c5c5c;
+  font-family: Roboto;
+}
+
+.menu-item-description {
+  color: #858585;
+  font-family: Roboto;
+}
+
+.menu-item-quantity-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: #338218;
+  padding: 12px 16px;
+  border-radius: 32px;
+  color: white;
+  font-family: Roboto;
+  width: 130px;
+}
+
+.menu-item-quantity-btn {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+.menu-item-quantity {
+  margin: 0;
+  font-size: 24px;
+}
+
+.customization-text {
+  color: #653ef3;
+  font-family: Roboto;
+}
+
+.flex-container {
+  display: flex;
+  gap: 100px;
+  margin-left: 16px;
+}
+
+@media screen and (max-width: 700px) {
+  .flex-container {
+    flex-grow: 1;
+    justify-content: space-between;
+    gap: 16px;
+  }
+}
+
+.menu-item-calories {
+  color: orange;
+  font-weight: 700;
+  font-family: Roboto;
+  font-size: 20px;
+  align-self: center;
+}
+
+.menu-item-img {
+  height: 150px;
+  width: 150px;
+  border-radius: 12px;
+}
