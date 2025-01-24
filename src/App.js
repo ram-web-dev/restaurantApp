@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react'
+import Loader from 'react-loader-spinner'
 import './App.css'
 
 import RestaurantHeader from './RestaurantHeader'
@@ -7,6 +8,7 @@ import RestaurantMenu from './RestaurantMenu'
 const App = () => {
   const [cartItems, setCartItems] = useState([])
   const [restaurantData, setRestaurantData] = useState([{}])
+  const [isLoading, setIsLoading] = useState(true)
 
   const addCartItems = cartItemId => {
     const cartItem = cartItems.find(item => item.id === cartItemId)
@@ -29,18 +31,26 @@ const App = () => {
     const updatedCartItems = cartItems.filter(item => item.id !== cartItemId)
     if (cartItem.count > 1) {
       const updatedCartitem = {...cartItem, count: cartItem.count - 1}
-      setCartItems(...updatedCartItems, updatedCartitem)
+      setCartItems([...updatedCartItems, updatedCartitem])
     } else {
-      setCartItems(...updatedCartItems)
+      setCartItems([...updatedCartItems])
     }
   }
+
+  const renderLoader = () => (
+    <div className="loader">
+      <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
+    </div>
+  )
 
   const fetchData = async () => {
     const responseData = await fetch(
       'https://apis2.ccbp.in/restaurant-app/restaurant-menu-list-details',
     )
     const data = await responseData.json()
+
     setRestaurantData(data)
+    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -55,12 +65,16 @@ const App = () => {
   return (
     <div className="restaurant-app-container">
       <RestaurantHeader restaurantName={restaurantName} cartItems={cartItems} />
-      <RestaurantMenu
-        tableMenuList={tableMenuList}
-        cartItems={cartItems}
-        removeCartItems={removeCartItems}
-        addCartItems={addCartItems}
-      />
+      {isLoading ? (
+        renderLoader()
+      ) : (
+        <RestaurantMenu
+          tableMenuList={tableMenuList}
+          cartItems={cartItems}
+          removeCartItems={removeCartItems}
+          addCartItems={addCartItems}
+        />
+      )}
     </div>
   )
 }
