@@ -5,10 +5,16 @@ import './App.css'
 import RestaurantHeader from './RestaurantHeader'
 import RestaurantMenu from './RestaurantMenu'
 
+const apiStatus = {
+  success: 'SUCCESS',
+  failure: 'FAILURE',
+  loading: 'LOADING',
+  intial: 'INITIAL',
+}
 const App = () => {
   const [cartItems, setCartItems] = useState([])
   const [restaurantData, setRestaurantData] = useState([{}])
-  const [isLoading, setIsLoading] = useState(true)
+  const [status, setStatus] = useState(apiStatus.intial)
 
   const addCartItems = cartItemId => {
     const cartItem = cartItems.find(item => item.id === cartItemId)
@@ -44,13 +50,14 @@ const App = () => {
   )
 
   const fetchData = async () => {
+    setStatus(apiStatus.loading)
     const responseData = await fetch(
       'https://apis2.ccbp.in/restaurant-app/restaurant-menu-list-details',
     )
     const data = await responseData.json()
 
+    setStatus(apiStatus.success)
     setRestaurantData(data)
-    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -64,16 +71,21 @@ const App = () => {
 
   return (
     <div className="restaurant-app-container">
-      <RestaurantHeader restaurantName={restaurantName} cartItems={cartItems} />
-      {isLoading ? (
-        renderLoader()
+      {status === apiStatus.success ? (
+        <>
+          <RestaurantHeader
+            restaurantName={restaurantName}
+            cartItems={cartItems}
+          />
+          <RestaurantMenu
+            tableMenuList={tableMenuList}
+            cartItems={cartItems}
+            removeCartItems={removeCartItems}
+            addCartItems={addCartItems}
+          />
+        </>
       ) : (
-        <RestaurantMenu
-          tableMenuList={tableMenuList}
-          cartItems={cartItems}
-          removeCartItems={removeCartItems}
-          addCartItems={addCartItems}
-        />
+        renderLoader()
       )}
     </div>
   )
