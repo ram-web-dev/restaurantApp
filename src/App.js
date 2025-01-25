@@ -55,7 +55,7 @@ const App = () => {
       'https://apis2.ccbp.in/restaurant-app/restaurant-menu-list-details',
     )
     const data = await responseData.json()
-
+    console.log(data)
     setStatus(apiStatus.success)
     setRestaurantData(data)
   }
